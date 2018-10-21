@@ -1,8 +1,18 @@
 class Card {
   //123 means 1, 2 or 3 figures. RGB means if the figure is red green or blue. Red means which shape the figure has, (R)ectangle, (E)llipse or (T)riangle
   String[] cardProperties = {"123", "rgb", "ret"}; 
-
-
+  //all settings will be setted here
+  float cardWidth;
+  float cardHeight;
+  float cardMargin = 20;
+  //X and Y coordinates of the cards on the table
+  final float cardX = 20;
+  final float cardY = 20;
+  void setValues() {
+    cardWidth = width / 5;
+    cardHeight = cardWidth * 1.2;
+    cardMargin = 20;
+  }
   //generates a list of cards based on the card properties that is defined above (see variable 'String[] cardProperties')
   //it returns a list of cards that are shuffled in a random order using the Shuffle function
   String[] generateCards() {
@@ -25,12 +35,14 @@ class Card {
   //a player will call this function when he has selected 3 cards and the function checks whether the cards are a set or not.
   boolean isSet(String[] selectedCards) {
     int points = 0;//points to meet the requirement which is 3, if 3 is met then it is a set
-    for (int i = 0; i < 3; i++) {
-      if ((selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property same?
-        points++;//if it is then assign point
-        println("1");
-      } else if ((!selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (!selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property different?
-        points++;
+    if (selectedCards.length == 3) {
+      for (int i = 0; i < 3; i++) {
+        if ((selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property same?
+          points++;//if it is then assign point
+          println("1");
+        } else if ((!selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (!selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property different?
+          points++;
+        }
       }
     }
     return (points == 3) ? true : false;
