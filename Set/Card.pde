@@ -36,15 +36,22 @@ class Card {
   boolean isSet(String[] selectedCards) {
     int points = 0;//points to meet the requirement which is 3, if 3 is met then it is a set
     if (selectedCards.length == 3) {
-      for (int i = 0; i < 3; i++) {
-        if ((selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property same?
-          points++;//if it is then assign point
-          println("1");
-        } else if ((!selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (!selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property different?
-          points++;
+      if (selectedCards[0] != "" && selectedCards[1] != "" && selectedCards[2] != "") {
+        for (int i = 0; i < 3; i++) {
+
+          if ((selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property same?
+            points++;//if it is then assign point
+          } else if ((!selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (!selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property different?
+            points++;
+          }
+        }
+        if (points < 3) {
+          clearSelection();
+          println("Geen set");
         }
       }
     }
+
     return (points == 3) ? true : false;
   }
 
