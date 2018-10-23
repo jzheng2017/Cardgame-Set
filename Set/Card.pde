@@ -8,6 +8,8 @@ class Card {
   //X and Y coordinates of the cards on the table
   final float cardX = 20;
   final float cardY = 20;
+  
+  //set the values
   void setValues() {
     cardWidth = width / 5;
     cardHeight = cardWidth * 1.2;
