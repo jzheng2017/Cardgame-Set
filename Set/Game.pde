@@ -8,7 +8,7 @@ class Game {
 
   void pickCards() {
     for (int i = 0; i < cardsOnTable.length; i++) {
-      if (cardsOnTable[i] == null || cardsOnTable[i] == "") {
+      if ((cardsOnTable[i] == null || cardsOnTable[i] == "") && amountOfCardsPicked < cardList.length) {
         cardsOnTable[i] = cardList[amountOfCardsPicked];
         amountOfCardsPicked++;
       }

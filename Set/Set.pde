@@ -7,7 +7,7 @@ void setup() {
   size(1000, 800);
   game.Start();
   drawAllCards(game.cardsOnTable);
-  assignPoint(card.isSet(player.selectedCards));
+//  assignPoint(card.isSet(player.selectedCards));
   drawAllCards(game.cardsOnTable);
   printInfo();
 }
@@ -15,13 +15,12 @@ void setup() {
 void draw() {
 }
 
-void mousePressed(){
+void mousePressed() {
   background(200);
   player.selectCard(card.cardWidth, card.cardHeight);
- 
-   assignPoint(card.isSet(player.selectedCards));
+ assignPoint(card.isSet(player.selectedCards));
   drawAllCards(game.cardsOnTable);
-   printInfo();
+  printInfo();
 }
 
 

@@ -1,4 +1,4 @@
-void drawCard(String card, float cardX, float cardY, float cardWidth, float cardHeight, float margin) {
+void drawCard(String card, float cardX, float cardY, float cardWidth, float cardHeight, float margin) { //<>//
   float x = cardX + margin; //x coordinate of the card figures
   float y = cardY;//y coordinate of the card figures
   float figureWidth = cardWidth - (margin * 2); //figure width
@@ -57,7 +57,9 @@ void drawAllCards(String[] cards) {
   for (int i = 0; i < cards.length; i++) {
     game.cardsXY[i][0] = cardX;
     game.cardsXY[i][1] = cardY;
-    drawCard(cards[i], cardX, cardY, card.cardWidth, card.cardHeight, card.cardMargin);//calling the card draw function
+    if (!cards[i].equals("")) {
+      drawCard(cards[i], cardX, cardY, card.cardWidth, card.cardHeight, card.cardMargin);//calling the card draw function
+    }
     cardX += card.cardWidth + card.cardMargin;
     if ((i+1) % 3 == 0 ) { // % 3 because it needs to start on a new row after 3 cards
       cardY = cardY + card.cardHeight + card.cardMargin;
@@ -69,8 +71,20 @@ void drawAllCards(String[] cards) {
 void assignPoint(boolean isSet) {
   if (isSet) {
     player.setsFound++;
-    clearSelection();
+    removeCards(player.selectedCards);
   }
+}
+
+void removeCards(String[] selectedCards) {
+  for (int i = 0; i < game.cardsOnTable.length; i++) {
+    for (int j = 0; j < selectedCards.length; j++) {
+      if (game.cardsOnTable[i].equals(selectedCards[j])) {
+        game.cardsOnTable[i] = "";
+      }
+    }
+  }
+  clearSelection();
+  game.pickCards();
 }
 
 void clearSelection() {
@@ -91,4 +105,5 @@ void printInfo() {
   }
   text("Geselecteerde kaarten: " + selectedCards, x, card.cardMargin);
   text("Sets gevonden: " + player.setsFound, x, card.cardMargin * 2);
+  text("Aantal kaarten over: " + (game.cardList.length - game.amountOfCardsPicked), x, card.cardMargin * 3);
 }

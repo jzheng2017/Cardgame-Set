@@ -1,4 +1,4 @@
-class Player {
+class Player { //<>//
   //the cards the player selected, max 3 cards can be selected.
   String[] selectedCards = {"", "", ""};
 
@@ -8,7 +8,7 @@ class Player {
 
   //this function will be called when a player selects a card, the index will be passed as a paramater and added to the selectedCards array.
   void selectCard(float cardWidth, float cardHeight) {
-boolean changed = false;
+    boolean changed = false;
     String card = "";
     for (int i = 0; i < game.cardsXY.length; i++) {
 
@@ -16,10 +16,10 @@ boolean changed = false;
         for (int j = 0; j < selectedCards.length; j++) {
           if (selectedCards[j].equals(game.cardsOnTable[i]) && !changed) {
             selectedCards[j] = "";
-        changed = true;
+            changed = true;
           } else if (selectedCards[j] == "" && !changed) {
             selectedCards[j] = game.cardsOnTable[i];
-        changed= true;
+            changed= true;
           }
         }
       }
