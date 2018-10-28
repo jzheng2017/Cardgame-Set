@@ -33,9 +33,9 @@ class Card {
     return cards;
   }
   //a player will call this function when he has selected 3 cards and the function checks whether the cards are a set or not.
-  boolean isSet(String[] selectedCards) {
+  boolean isSet(String[] selectedCards, boolean check) {
     int points = 0;//points to meet the requirement which is 3, if 3 is met then it is a set
-    if (selectedCards.length == 3) {
+    if (selectedCards.length == 3 ) {
       if ((selectedCards[0] != "") && (selectedCards[1] != "") && (selectedCards[2] != "")) {
         for (int i = 0; i < 3; i++) {
           if ((selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property same?
@@ -44,7 +44,7 @@ class Card {
             points++;
           }
         }
-        if (points < 3) {
+        if (points < 3 && !check) {
           clearSelection();
           println("Geen set");
         }

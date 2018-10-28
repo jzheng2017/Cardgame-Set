@@ -106,4 +106,5 @@ void printInfo() {
   text("Geselecteerde kaarten: " + selectedCards, x, card.cardMargin);
   text("Sets gevonden: " + player.setsFound, x, card.cardMargin * 2);
   text("Aantal kaarten over: " + (game.cardList.length - game.amountOfCardsPicked), x, card.cardMargin * 3);
+  text("Aantal mogelijk sets: " + (game.activeSets()), x, card.cardMargin * 4);
 }

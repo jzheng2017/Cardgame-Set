@@ -22,7 +22,23 @@ class Game {
     game.cardList = card.Shuffle(game.cardList);//shuffle the generated cards in a random order
     game.pickCards();//fill the table with cards(9) (THIS IS NOT DRAWING THE CARDS, MERELY FILLING THE ARRAY!)
   }
+  //checks how many sets there are on the table
+  int activeSets() {
+    int counter = 0;
+    String[] cards = {"", "", ""};
+    for (int i = 0; i < cardsOnTable.length; i++) {
+      for (int j = i + 1; j < cardsOnTable.length - i; j++) {
+        for (int k = j + 1; k < cardsOnTable.length - j; k++) {
+          cards[0] = cardsOnTable[i];
+          cards[1] = cardsOnTable[j];
+          cards[2] = cardsOnTable[k];
+          if (card.isSet(cards, true)) {
+            counter++;
+          }
+        }
+      }
+    }
+
+    return counter;
+  }
 }
-////checks how many sets there are on the table
-//int activeSets() {
-//}

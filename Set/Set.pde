@@ -5,22 +5,22 @@ Card card = new Card();
 
 void setup() {
   size(1000, 800);
-  game.Start();
-  drawAllCards(game.cardsOnTable);
-//  assignPoint(card.isSet(player.selectedCards));
-  drawAllCards(game.cardsOnTable);
-  printInfo();
+    game.Start();
+    drawAllCards(game.cardsOnTable);
+  //  assignPoint(card.isSet(player.selectedCards));
+  //  drawAllCards(game.cardsOnTable);
+    printInfo();
 }
 
 void draw() {
 }
 
 void mousePressed() {
-  background(200);
-  player.selectCard(card.cardWidth, card.cardHeight);
- assignPoint(card.isSet(player.selectedCards));
-  drawAllCards(game.cardsOnTable);
-  printInfo();
+   background(200);
+   player.selectCard(card.cardWidth, card.cardHeight);
+  assignPoint(card.isSet(player.selectedCards, false));
+   drawAllCards(game.cardsOnTable);
+   printInfo();
 }
 
 
