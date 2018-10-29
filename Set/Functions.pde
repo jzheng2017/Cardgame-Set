@@ -4,9 +4,9 @@ void drawCard(String card, float cardX, float cardY, float cardWidth, float card
   float figureWidth = cardWidth - (margin * 2); //figure width
   float figureHeight = cardHeight / 5; // figure height
   fill(255);
-  if (player.selectedCards.length > 0) {
-    for (int i = 0; i < player.selectedCards.length; i++) {
-      if (player.selectedCards[i].equals(card)) {
+  if (selectedCards.length > 0) {
+    for (int i = 0; i < selectedCards.length; i++) {
+      if (selectedCards[i].equals(card)) {
         fill(252, 255, 127);
       }
     }
@@ -53,58 +53,63 @@ void drawCard(String card, float cardX, float cardY, float cardWidth, float card
 }
 //drawing all 9 cards on the screen
 void drawAllCards(String[] cards) {
-  float cardX = card.cardX, cardY = card.cardY; // declaring and initializing the card coordinates
-  for (int i = 0; i < cards.length; i++) {
-    game.cardsXY[i][0] = cardX;
-    game.cardsXY[i][1] = cardY;
+  float _cardX = cardX, _cardY = cardY; // declaring and initializing the card coordinates
+  for (int i = 0; i < cards.length; i++) { //<>//
+    cardsXY[i][0] = _cardX;
+    cardsXY[i][1] = _cardY;
     if (!cards[i].equals("")) {
-      drawCard(cards[i], cardX, cardY, card.cardWidth, card.cardHeight, card.cardMargin);//calling the card draw function
+      drawCard(cards[i], _cardX, _cardY,cardWidth, cardHeight, cardMargin);//calling the card draw function
     }
-    cardX += card.cardWidth + card.cardMargin;
+    _cardX += cardWidth + cardMargin;
     if ((i+1) % 3 == 0 ) { // % 3 because it needs to start on a new row after 3 cards
-      cardY = cardY + card.cardHeight + card.cardMargin;
-      cardX = card.cardX;
+     _cardY = _cardY + cardHeight + cardMargin;
+     _cardX = cardX;
     }
   }
 }
 //assign point to player if the selected cards are a set
 void assignPoint(boolean isSet) {
   if (isSet) {
-    player.setsFound++;
-    removeCards(player.selectedCards);
+    setsFound++;
+    removeCards(selectedCards);
   }
 }
 
 void removeCards(String[] selectedCards) {
-  for (int i = 0; i < game.cardsOnTable.length; i++) {
+  for (int i = 0; i < cardsOnTable.length; i++) {
     for (int j = 0; j < selectedCards.length; j++) {
-      if (game.cardsOnTable[i].equals(selectedCards[j])) {
-        game.cardsOnTable[i] = "";
+      if (cardsOnTable[i].equals(selectedCards[j])) {
+        cardsOnTable[i] = "";
       }
     }
   }
   clearSelection();
-  game.pickCards();
+  pickCards();
 }
 
 void clearSelection() {
-  for (int i = 0; i < player.selectedCards.length; i++) {
-    player.selectedCards[i] = "";
+  for (int i = 0; i < selectedCards.length; i++) {
+    selectedCards[i] = "";
   }
 }
 
-void printInfo() {
-  float x = card.cardWidth * 3 + card.cardMargin * 3 + card.cardMargin;
-  String selectedCards = "";
-  textSize(17);
-  for (int i = 0; i < player.selectedCards.length; i++) {
-    selectedCards += player.selectedCards[i];
-    if (i != player.selectedCards.length - 1) {
-      selectedCards += ", ";
+String selectedCards(){
+    String _selectedCards = "";
+   for (int i = 0; i < selectedCards.length; i++) {
+    _selectedCards += selectedCards[i];
+    if (i != selectedCards.length - 1) {
+      _selectedCards += ", ";
     }
   }
-  text("Geselecteerde kaarten: " + selectedCards, x, card.cardMargin);
-  text("Sets gevonden: " + player.setsFound, x, card.cardMargin * 2);
-  text("Aantal kaarten over: " + (game.cardList.length - game.amountOfCardsPicked), x, card.cardMargin * 3);
-  text("Aantal mogelijk sets: " + (game.activeSets()), x, card.cardMargin * 4);
+  return _selectedCards;
+}
+void printInfo() {
+  float x = cardWidth * 3 + cardMargin * 3 + cardMargin;
+
+  textSize(17);
+ 
+  text("Geselecteerde kaarten: " + selectedCards(), x, cardMargin);
+  text("Sets gevonden: " + setsFound, x, cardMargin * 2);
+  text("Aantal kaarten over: " + (cardList.length - amountOfCardsPicked), x, cardMargin * 3);
+  text("Aantal mogelijk sets: " + (activeSets()), x, cardMargin * 4);
 }

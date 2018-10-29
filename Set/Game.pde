@@ -1,4 +1,4 @@
-class Game {
+//class Game {
   int amountOfCardsPicked = 0;
   //the cardList gets filled with cards that are generated with the generateCards() function, it returns an array.
   String[] cardList = {}; 
@@ -17,22 +17,22 @@ class Game {
 
 
   void Start() {
-    card.setValues();
-    game.cardList = card.generateCards();//generate all cards for the game(27)
-    game.cardList = card.Shuffle(game.cardList);//shuffle the generated cards in a random order
-    game.pickCards();//fill the table with cards(9) (THIS IS NOT DRAWING THE CARDS, MERELY FILLING THE ARRAY!)
+    setValues();
+    cardList = generateCards();//generate all cards for the game(27)
+    cardList = Shuffle(cardList);//shuffle the generated cards in a random order
+    pickCards();//fill the table with cards(9) (THIS IS NOT DRAWING THE CARDS, MERELY FILLING THE ARRAY!)
   }
   //checks how many sets there are on the table
   int activeSets() {
     int counter = 0;
     String[] cards = {"", "", ""};
-    for (int i = 0; i < cardsOnTable.length; i++) {
-      for (int j = i + 1; j < cardsOnTable.length - i; j++) {
-        for (int k = j + 1; k < cardsOnTable.length - j; k++) {
+    for (int i = 0; i <= cardsOnTable.length; i++) {
+      for (int j = i + 1; j <= cardsOnTable.length - i; j++) {
+        for (int k = j + 1; k <= cardsOnTable.length - j; k++) {
           cards[0] = cardsOnTable[i];
           cards[1] = cardsOnTable[j];
           cards[2] = cardsOnTable[k];
-          if (card.isSet(cards, true)) {
+          if (isSet(cards, true)) {
             counter++;
           }
         }
@@ -41,4 +41,4 @@ class Game {
 
     return counter;
   }
-}
+//}

@@ -1,4 +1,4 @@
-class Player { //<>// //<>//
+//class Player { //<>// //<>//
   //the cards the player selected, max 3 cards can be selected.
   String[] selectedCards = {"", "", ""};
 
@@ -10,22 +10,22 @@ class Player { //<>// //<>//
   void selectCard(float cardWidth, float cardHeight) {
     boolean changed = false;
     String card = "";
-    for (int i = 0; i < game.cardsXY.length; i++) {
+    for (int i = 0; i < cardsXY.length; i++) {
 
-      if ((mouseX >= game.cardsXY[i][0] && mouseX <= game.cardsXY[i][0] + cardWidth) && (mouseY >= game.cardsXY[i][1] && mouseY <= game.cardsXY[i][1] + cardHeight)) {
+      if ((mouseX >= cardsXY[i][0] && mouseX <= cardsXY[i][0] + cardWidth) && (mouseY >= cardsXY[i][1] && mouseY <= cardsXY[i][1] + cardHeight)) {
         for (int j = 0; j < selectedCards.length; j++) {
-          if (selectedCards[j].equals(game.cardsOnTable[i])) {
+          if (selectedCards[j].equals(cardsOnTable[i])) {
             selectedCards[j] = "";
             changed = true;
           }
         }
         for (int j = 0; j < selectedCards.length; j++) {
           if (selectedCards[j] == "" && !changed) {
-            selectedCards[j] = game.cardsOnTable[i];
+            selectedCards[j] = cardsOnTable[i];
             changed= true;
           }
         }
       }
     }
   }
-}
+//}

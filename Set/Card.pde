@@ -1,4 +1,4 @@
-class Card {
+//class Card {
   //123 means 1, 2 or 3 figures. RGB means if the figure is red green or blue. Red means which shape the figure has, (R)ectangle, (E)llipse or (T)riangle
   String[] cardProperties = {"123", "rgb", "ret"}; 
   //all settings will be setted here
@@ -38,9 +38,9 @@ class Card {
     if (selectedCards.length == 3 ) {
       if ((selectedCards[0] != "") && (selectedCards[1] != "") && (selectedCards[2] != "")) {
         for (int i = 0; i < 3; i++) {
-          if ((selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property same?
+          if ((selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))&& (selectedCards[0].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property same?
             points++;//if it is then assign point
-          } else if ((!selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (!selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property different?
+          } else if ((!selectedCards[0].substring(i, i+1).equals(selectedCards[1].substring(i, i+1))) && (!selectedCards[1].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))&& (!selectedCards[0].substring(i, i+1).equals(selectedCards[2].substring(i, i+1)))) {//all card property different?
             points++;
           }
         }
@@ -50,7 +50,6 @@ class Card {
         }
       }
     }
-println(points);
     return (points == 3) ? true : false;
   }
 
@@ -71,5 +70,5 @@ println(points);
       }
     }
     return shuffledCards;
-  }
+  //}
 }
