@@ -5,22 +5,24 @@
 
 void setup() {
   size(1000, 800);
-   Start();
-    drawAllCards(cardsOnTable);
+  Start();
+  drawAllCards(cardsOnTable);
   //  assignPoint(card.isSet(player.selectedCards));
   //  drawAllCards(game.cardsOnTable);
-    printInfo();
+  printInfo();
 }
 
 void draw() {
+  background(200);
+  drawAllCards(cardsOnTable);
+  printInfo();
+  drawButton();
 }
 
 void mousePressed() {
-   background(200);
- selectCard(cardWidth,cardHeight);
+  selectCard(cardWidth, cardHeight);
   assignPoint(isSet(selectedCards, false));
-   drawAllCards(cardsOnTable);
-   printInfo();
+  newGame();
 }
 
 
